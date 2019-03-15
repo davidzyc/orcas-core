@@ -17,7 +17,7 @@ class ReplyController extends Controller
         $reply->save();
         $reply->todo()->associate(Todo::find($todoId));
         $reply->save();
-        return response()->json($reply, 201);
+        return response()->json($reply);
     }
 
 

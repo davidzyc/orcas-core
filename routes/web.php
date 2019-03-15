@@ -25,6 +25,9 @@ Route::get('/team/{team}/member/{user}/toggle', 'TeamController@toggleMember');
 Route::get('/team/{team}/members', 'TeamController@getMembers');
 Route::get('/team/{team}/todos', 'TodoController@getTodosFromTeam');
 Route::post('/team/{team}/todos', 'TodoController@create');
+Route::get('/team/{team}/todo/{todo}/reply', 'TodoController@getRepliesFromTodo');
 Route::post('/team/{team}/todo/{todo}/reply', 'ReplyController@create');
 Route::post('/team', 'TeamController@store');
 Route::get('/init', 'TodoController@init');
+
+Route::post('/team/{team}/todo/edit', 'TodoController@editTodo');

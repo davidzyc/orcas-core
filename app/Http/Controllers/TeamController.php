@@ -25,7 +25,7 @@ class TeamController extends Controller
         $team = Team::create($request->all());
         $team->owner()->associate(Auth::user());
         $team->save();
-        return response()->json($team, 201);
+        return response()->json($team);
     }
 
     public function show($id)
@@ -40,14 +40,14 @@ class TeamController extends Controller
         //
         $team = Team::findOrFail($id);
         $team->update($request->all());
-        return response()->json($team, 200);
+        return response()->json($team);
     }
 
     public function destroy($id)
     {
         //
         Team::destroy($id);
-        return response()->json(null, 204);
+        return response()->json(null);
     }
 
     public function getMyTeams(){
@@ -58,12 +58,12 @@ class TeamController extends Controller
     public function toggleMember(ToggleMemberRequest $request, $teamId, $userId){
         $team = Team::find($teamId);
         $team->members()->toggle($userId);
-        return response()->json(['status' => 1], 200);
+        return response()->json(['status' => 1]);
     }
 
     public function getMembers(CheckMemberRequest $request, $teamId){
         $members = Team::find($teamId)->members()->get();
-        return response()->json($members, 200);
+        return response()->json($members);
     }
 
 }
