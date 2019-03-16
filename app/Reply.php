@@ -16,6 +16,10 @@ class Reply extends Model
         return $this->belongsTo('App\Todo');
     }
 
+    public function file() {
+        return $this->belongsTo('App\File');
+    }
+
     protected $fillable = [
         'reply_content'
     ];

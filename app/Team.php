@@ -19,6 +19,10 @@ class Team extends Model
         return $this->hasMany('App\Todo');
     }
 
+    public function files() {
+        return $this->belongsToMany('App\File');
+    }
+
     protected $fillable = [
         'team_name', 'team_description', 'user_id'
     ];
