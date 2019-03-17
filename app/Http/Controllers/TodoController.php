@@ -36,14 +36,16 @@ class TodoController extends Controller
         $todo->save();
         $todo->team()->associate(Team::find($teamId));
         $todo->save();
-        return response()->json($todo);
+        return response()->json(['status' => 1]);
+        // return response()->json($todo);
     }
 
     public function editTodo(EditTodoRequest $request,$teamId){
         // dd($teamId);
         $todo = Todo::findOrFail($request->id);
         $todo->update($request->all());
-        return response()->json($todo);
+        return response()->json(['status' => 1]);
+        // return response()->json($todo);
     }
 
 }

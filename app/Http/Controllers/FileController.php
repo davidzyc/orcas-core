@@ -10,9 +10,12 @@ use App\Http\Requests\UploadFileRequest;
 use App\Http\Requests\GetMyFileRequest;
 use App\Http\Requests\ShareFileWithTeamRequest;
 use App\Http\Requests\AttachFileToReplyRequest;
+use App\Http\Requests\CheckMemberRequest;
+use App\Http\Requests\CheckOwnerRequest;
 use App\File;
 use App\Team;
 use App\Reply;
+use App\Todo;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -21,6 +24,11 @@ class FileController extends Controller
     public function getMyFiles() {
         // dd('Hello');
         $files = Auth::user()->files()->latest()->get();
+        return response()->json($files);
+    }
+
+    public function getFileListFromTeam(CheckMemberRequest $request, $teamId) {
+        $files = Team::find($teamId)->files()->latest()->get();
         return response()->json($files);
     }
 

@@ -24,12 +24,12 @@ Route::get('/', function () {
 Route::prefix('api/v1')->group(function () {
 
     // Authentication Routes...
-    // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     
     // Registration Routes...
-    // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
     
     // Password Reset Routes...
@@ -55,6 +55,7 @@ Route::prefix('api/v1')->middleware('auth')->group(function () {
     Route::get('/file/{file}', 'FileController@getMySpecificFile');
     Route::post('/file', 'FileController@create');
     Route::get('/team/{team}/file/{file}', 'FileController@getFileFromTeam');
+    Route::get('/team/{team}/file', 'FileController@getFileListFromTeam');
     Route::post('/reply/{reply}/file/{file}/toggle', 'FileController@toggleFileToReply');
     
     // Admin Route
