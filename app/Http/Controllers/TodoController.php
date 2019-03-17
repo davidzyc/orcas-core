@@ -26,7 +26,7 @@ class TodoController extends Controller
 
     public function init(){
         // dd(Auth::user()->with(['teams', 'todos'])->get());
-        $todos = Auth::user()->with(['teams', 'todos'])->get();
+        $todos = Auth::user()->teams()->with(['todos'])->get();
         return response()->json($todos);
     }
 
